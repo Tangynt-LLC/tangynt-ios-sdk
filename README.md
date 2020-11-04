@@ -28,7 +28,7 @@ pod 'Tangynt'
 * If your app uses users make sure you have your user object conform to the `TangyntUser` object which will set up the base user
 >You don't need to do anything else, this just gives you the *id, emailVerified, email, password* and *displayName* properties
 
-##### Log In
+#### Log In
 * The `login` method in the background will save a **TangyntLoginResponse** which holds the users `AuthToken` and `refreshToken` which you can access by either calling `Tangynt.api.getAuthToken()` or `Tangynt.api.getRefreshToken()`
 
 **TangyntAuthToken properties**<br />
@@ -44,11 +44,11 @@ issuedAt: Int64<br />
 expires: Int64<br />
 deactivated: Bool<br />
 
-##### Log Out
+#### Log Out
 * Tangynt has a `logout` method you can call which will clear the currently signed in users data as well as the LoginResponse object.
 * If you would like to do anything before the user is logged out, Tangynt has a closure proprety called `onLogout: () -> ()` you can set that will get called **after** `logout` is called but **before** the users data is cleared
 
-##### Authorized Requests
+#### Authorized Requests
 * Any authorized request where the `TangyntAuthToken` is used will retry 3 times **if** the response code is a 401.  After the third failed attempt the `logout` method will be called and the user will be required to log in again
 
 ## Objects
