@@ -1,0 +1,16 @@
+PODS:
+  - Tangynt (0.1.0)
+
+DEPENDENCIES:
+  - Tangynt (from `../`)
+
+EXTERNAL SOURCES:
+  Tangynt:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Tangynt: c3c41e9674ac25544a6fc3c965681f001bfd2760
+
+PODFILE CHECKSUM: afdd3744fc1799c19bde30f3d408e122af19dde0
+
+COCOAPODS: 1.9.3

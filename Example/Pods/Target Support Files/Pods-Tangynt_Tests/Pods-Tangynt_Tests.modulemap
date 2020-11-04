@@ -1,0 +1,6 @@
+framework module Pods_Tangynt_Tests {
+  umbrella header "Pods-Tangynt_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		269F63BA46AD957B0685F774 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		269F63BA46AD957B0685F774 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		56853F4EA69BC357E4943208 /* Pods-Tangynt_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangynt_Tests.release.xcconfig"; path = "Target Support Files/Pods-Tangynt_Tests/Pods-Tangynt_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Tangynt_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tangynt_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,10 +43,10 @@
 		61C151B2387DA47F97C7A16E /* Pods_Tangynt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tangynt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EC1B53DE821F094D910BC6 /* Pods-Tangynt_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangynt_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tangynt_Tests/Pods-Tangynt_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B465E123FDB7FE758E839A5E /* Pods_Tangynt_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tangynt_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CABC7FE68C1E2B75CC2B26E9 /* Tangynt.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Tangynt.podspec; path = ../Tangynt.podspec; sourceTree = "<group>"; };
+		CABC7FE68C1E2B75CC2B26E9 /* Tangynt.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Tangynt.podspec; path = ../Tangynt.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE6CD18EEBB0DA6DC8AE315C /* Pods-Tangynt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangynt_Example.debug.xcconfig"; path = "Target Support Files/Pods-Tangynt_Example/Pods-Tangynt_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D2BE5F56E9DACF693268A8A8 /* Pods-Tangynt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tangynt_Example.release.xcconfig"; path = "Target Support Files/Pods-Tangynt_Example/Pods-Tangynt_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FECA6634168C3BDCB1849F40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FECA6634168C3BDCB1849F40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 				65EC1B53DE821F094D910BC6 /* Pods-Tangynt_Tests.debug.xcconfig */,
 				56853F4EA69BC357E4943208 /* Pods-Tangynt_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -213,6 +212,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = MC2BEA2U5Y;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -227,6 +227,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -478,6 +479,7 @@
 			baseConfigurationReference = CE6CD18EEBB0DA6DC8AE315C /* Pods-Tangynt_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MC2BEA2U5Y;
 				INFOPLIST_FILE = Tangynt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -493,6 +495,7 @@
 			baseConfigurationReference = D2BE5F56E9DACF693268A8A8 /* Pods-Tangynt_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MC2BEA2U5Y;
 				INFOPLIST_FILE = Tangynt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
