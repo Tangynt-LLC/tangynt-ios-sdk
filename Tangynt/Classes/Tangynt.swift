@@ -1,7 +1,7 @@
 import Foundation
 
 //MARK: - Main Tangynt Class -
-open public class Tangynt {
+public class Tangynt {
     
     public static let api = Tangynt(TangyntCache.apiKey!)
     public static var requiresUsersToSignIn = true
@@ -1311,7 +1311,7 @@ public class TangyntUser: Codable {
     case displayName
   }
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     id = try container.decode(Int64.self, forKey: .id)
     emailVerified = try container.decode(Bool.self, forKey: .emailVerified)
