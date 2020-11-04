@@ -362,7 +362,7 @@ public extension Int {
 
 //MARK: - Tangynt Client -
 
-open enum TangyntResponseStatusCode: Int, Codable {
+public enum TangyntResponseStatusCode: Int, Codable {
     case success = 200
     case invalidIDProvided = 400
     case invalidCredentials = 401
