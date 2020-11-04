@@ -1295,7 +1295,7 @@ public protocol TangyntObject: Codable {
   var objectName: String {get}
 }
 
-public class TangyntUser: Codable {
+open class TangyntUser: Codable {
   public var id: Int64
   public var emailVerified: Bool
   public var email: String
@@ -1335,7 +1335,7 @@ public class TangyntUser: Codable {
 
 
 //MARK: - Tangynt File -
-public class TangyntFile: Codable {
+open class TangyntFile: Codable {
   public var id: Int
   public var fileType: String
   public var name: String
