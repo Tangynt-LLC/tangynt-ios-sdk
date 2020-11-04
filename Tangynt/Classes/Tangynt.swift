@@ -1290,7 +1290,7 @@ public struct MultipartForm: Hashable, Equatable {
 
 
 //MARK: - Tangynt User -
-open protocol TangyntObject: Codable {
+protocol TangyntObject: Codable {
   public var id: Int64 {get set}
   public var objectName: String {get}
 }
