@@ -350,7 +350,7 @@ public class ErrorResponse: Codable, Error {
 }
 
 public extension Int {
-    public func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
+    func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
         if let statusCode = TangyntResponseStatusCode(rawValue: self) {
             return statusCode
         } else {
@@ -1165,7 +1165,7 @@ public class TangyntRequest {
 }
 
 public extension URLResponse {
-    public var httpURLResponse: HTTPURLResponse? {
+    var httpURLResponse: HTTPURLResponse? {
         return self as? HTTPURLResponse
     }
 }
@@ -1178,12 +1178,12 @@ public extension Error {
 
 
 public extension Date {
-    public var millisecondsSince1970:Int64 {
+    var millisecondsSince1970:Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
     
     
-    public init(milliseconds:Int64) {
+    init(milliseconds:Int64) {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
     }
     
@@ -1191,7 +1191,7 @@ public extension Date {
 
 
 public extension Data {
-    public mutating func append(_ string: String) {
+    mutating func append(_ string: String) {
         self.append(string.data(using: .utf8, allowLossyConversion: true)!)
     }
 }
