@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03FB42EBAE6D5BE04F3CBAD594EB5533 /* Tangynt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tangynt.swift; path = Tangynt/Classes/Tangynt.swift; sourceTree = "<group>"; };
+		03FB42EBAE6D5BE04F3CBAD594EB5533 /* Tangynt.swift */ = {isa = PBXFileReference; includeInIndex = 1; indentWidth = 4; lastKnownFileType = sourcecode.swift; name = Tangynt.swift; path = Tangynt/Classes/Tangynt.swift; sourceTree = "<group>"; };
 		082BC76B188CBF04C39ECA03C954BFA8 /* Tangynt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tangynt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A17B8DAF762CB9C17605CA6586866F4 /* Pods-Tangynt_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Tangynt_Tests.modulemap"; sourceTree = "<group>"; };
 		1CEA48C3E076DD818BD9088CBF179A84 /* Tangynt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Tangynt-Info.plist"; sourceTree = "<group>"; };

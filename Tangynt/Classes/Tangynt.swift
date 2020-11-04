@@ -1,47 +1,47 @@
 import Foundation
 
 //MARK: - Main Tangynt Class -
-public class Tangynt {
+open public class Tangynt {
     
-    static let api = Tangynt(TangyntCache.apiKey!)
-    static var requiresUsersToSignIn = true
+    public static let api = Tangynt(TangyntCache.apiKey!)
+    public static var requiresUsersToSignIn = true
     
-    @discardableResult init(_ apiKey: String) {
+    @discardableResult public init(_ apiKey: String) {
         TangyntCache.set(apiKey: apiKey)
     }
     
-    func createUser<T>(user: T, completion: @escaping (T?, ErrorResponse?) -> ()) where T: TangyntUser {
+    public func createUser<T>(user: T, completion: @escaping (T?, ErrorResponse?) -> ()) where T: TangyntUser {
         TangyntClient.client.createUser(user: user, completion: completion)
     }
     
-    func login<T: TangyntUser>(_ userType: T.Type, email: String, password: String, completion: @escaping (T?, ErrorResponse?) -> ()) {
+    public func login<T: TangyntUser>(_ userType: T.Type, email: String, password: String, completion: @escaping (T?, ErrorResponse?) -> ()) {
         TangyntClient.client.login(userType ,email: email, password: password, completion: completion)
     }
     
-    var onLogout: () -> () = {}
+    public var onLogout: () -> () = {}
     
-    func logout() {
+    public func logout() {
         onLogout()
         TangyntCache.clearCache()
     }
     
-    func refreshAuth(completion: @escaping (ErrorResponse?) -> ()) {
+    public func refreshAuth(completion: @escaping (ErrorResponse?) -> ()) {
         TangyntClient.client.refreshAuth(completion: completion)
     }
     
-    func getUser<T>() -> T? where T: TangyntUser {
+    public func getUser<T>() -> T? where T: TangyntUser {
         return TangyntCache.getUser()
     }
     
-    func getAuthToken() -> TangyntAuthToken? {
+    public func getAuthToken() -> TangyntAuthToken? {
         return TangyntCache.tangyntLoginResponse?.authToken
     }
     
-    func getRefreshToken() -> TangyntRefreshToken? {
+    public func getRefreshToken() -> TangyntRefreshToken? {
         return TangyntCache.tangyntLoginResponse?.refreshToken
     }
     
-    func resendVerificationEmail(completion: @escaping (ErrorResponse?) -> ()) {
+    public func resendVerificationEmail(completion: @escaping (ErrorResponse?) -> ()) {
         if let user = Tangynt.api.getUser() {
             if user.emailVerified == false {
                 TangyntClient.client.resendVerificationEmail { (error) in
@@ -57,15 +57,15 @@ public class Tangynt {
         }
     }
     
-    func updatePassword(newPassword: String, completion: @escaping (ErrorResponse?) -> ()) {
+    public func updatePassword(newPassword: String, completion: @escaping (ErrorResponse?) -> ()) {
         TangyntClient.client.updatePassword(newPassword: newPassword, completion: completion)
     }
     
-    func resetPassword(email: String, completion: @escaping (ErrorResponse?) -> ()) {
+    public func resetPassword(email: String, completion: @escaping (ErrorResponse?) -> ()) {
         TangyntClient.client.resetPassword(email: email, completion: completion)
     }
     
-    func createUserAndLogin<T: TangyntUser>(user: T, completion: @escaping (T?, ErrorResponse?) -> ()) {
+    public func createUserAndLogin<T: TangyntUser>(user: T, completion: @escaping (T?, ErrorResponse?) -> ()) {
         createUser(user: user) { (user, errorRespnse) in
             if let errorRespnse = errorRespnse {
                 completion(nil, errorRespnse)
@@ -80,7 +80,7 @@ public class Tangynt {
     }
     
     //MARK: - CRUD -
-    func createObject<T: TangyntObject>(object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
+    public func createObject<T: TangyntObject>(object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
         TangyntClient.client.create(object, fields: fields) { (object, any, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -97,7 +97,7 @@ public class Tangynt {
         }
     }
     
-    func getObject<T: TangyntObject>(object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
+    public func getObject<T: TangyntObject>(object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
         TangyntClient.client.get(object, fields: fields) { (object, any, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -114,7 +114,7 @@ public class Tangynt {
         }
     }
     
-    func getObjects<T: TangyntObject>(objectType: T.Type, listOptions: ListOptions? = nil, completion: @escaping (Any?, ErrorResponse?) -> ()) {
+    public func getObjects<T: TangyntObject>(objectType: T.Type, listOptions: ListOptions? = nil, completion: @escaping (Any?, ErrorResponse?) -> ()) {
         TangyntClient.client.getObjects(objectType: objectType, listOptions: listOptions) { (object, any, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -130,7 +130,7 @@ public class Tangynt {
         }
     }
     
-    func update<T: TangyntObject>(_ object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
+    public func update<T: TangyntObject>(_ object: T, fields: [String] = [], completion: @escaping (T?, Any?) -> ()) {
         TangyntClient.client.update(object, fields: fields) { (object, any, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -147,7 +147,7 @@ public class Tangynt {
         }
     }
     
-    func delete<T: TangyntObject>(_ object: T, completion: @escaping (Bool) -> ()) {
+    public func delete<T: TangyntObject>(_ object: T, completion: @escaping (Bool) -> ()) {
         TangyntClient.client.delete(object) { (_, _, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -160,15 +160,15 @@ public class Tangynt {
     
     
     //MARK: - Files -
-    func uploadFile<T: TangyntFile>(fileData: Data, object: T, fields: [String], completion: @escaping (T?, Any?, ErrorResponse?) -> ()) {
+    public func uploadFile<T: TangyntFile>(fileData: Data, object: T, fields: [String], completion: @escaping (T?, Any?, ErrorResponse?) -> ()) {
         TangyntClient.client.uploadFile(fileData: fileData, object, fields: fields, completion: completion)
     }
     
-    func downloadFile(fileId: Int, completion: @escaping (Data?, Any?, ErrorResponse?) -> ()) {
+    public func downloadFile(fileId: Int, completion: @escaping (Data?, Any?, ErrorResponse?) -> ()) {
         TangyntClient.client.downloadFile(fileId: fileId, completion: completion)
     }
     
-    func getFiles<T: TangyntFile>(objectType: T.Type, listOptions: ListOptions? = nil, completion: @escaping ([T]?, Any?) -> ()) {
+    public func getFiles<T: TangyntFile>(objectType: T.Type, listOptions: ListOptions? = nil, completion: @escaping ([T]?, Any?) -> ()) {
         TangyntClient.client.getFiles(objectType: objectType, listOptions: listOptions) { (object, any, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -185,11 +185,11 @@ public class Tangynt {
         }
     }
     
-    func updateFile<T: TangyntFile>(fileData: Data?, object: T, fields: [String], completion: @escaping (T?, Any?, ErrorResponse?) -> ()) {
+    public func updateFile<T: TangyntFile>(fileData: Data?, object: T, fields: [String], completion: @escaping (T?, Any?, ErrorResponse?) -> ()) {
         TangyntClient.client.updateFile(fileData: fileData, object, fields: fields, completion: completion)
     }
     
-    func delete(fileId: Int, completion: @escaping (Bool?, ErrorResponse?) -> ()) {
+    public func delete(fileId: Int, completion: @escaping (Bool?, ErrorResponse?) -> ()) {
         TangyntClient.client.deleteFile(fileId: fileId, completion: completion)
     }
     
@@ -198,21 +198,21 @@ public class Tangynt {
 
 //MARK: - Tangynt Login Response
 
-class TangyntLoginResponse: Codable {
-    var authToken: TangyntAuthToken
-    var refreshToken: TangyntRefreshToken
+open class TangyntLoginResponse: Codable {
+    public var authToken: TangyntAuthToken
+    public var refreshToken: TangyntRefreshToken
     
-    enum CodingKeys: CodingKey {
+    public enum CodingKeys: CodingKey {
         case authToken
         case refreshToken
     }
     
-    init(authToken: TangyntAuthToken, refreshToken: TangyntRefreshToken) {
+    public init(authToken: TangyntAuthToken, refreshToken: TangyntRefreshToken) {
         self.authToken = authToken
         self.refreshToken = refreshToken
     }
     
-    static func create(from dictionary: [String: Any]) -> TangyntLoginResponse? {
+    public static func create(from dictionary: [String: Any]) -> TangyntLoginResponse? {
         var authToken: TangyntAuthToken? = nil
         let authSection = dictionary["authToken"] as? [String: Any]
         let authId = authSection?["id"] as? String
@@ -241,19 +241,19 @@ class TangyntLoginResponse: Codable {
     }
     
 }
-struct TangyntAuthToken: Codable {
-    var id: String
-    var issuedAt: Int64
-    var expires: Int64
+open struct TangyntAuthToken: Codable {
+    public var id: String
+    public var issuedAt: Int64
+    public var expires: Int64
 }
 
-struct TangyntRefreshToken: Codable {
-    var id: String
-    var client: String
-    var issuedTo: Int64
-    var issuedAt: Int64
-    var expires: Int64
-    var deactivated: Bool
+open struct TangyntRefreshToken: Codable {
+    public var id: String
+    public var client: String
+    public var issuedTo: Int64
+    public var issuedAt: Int64
+    public var expires: Int64
+    public var deactivated: Bool
 }
 
 
@@ -333,24 +333,24 @@ private class TangyntCache {
 }
 
 
-class ErrorResponse: Codable, Error {
-    var timestamp: Int64
-    var status: TangyntResponseStatusCode
-    var error: String
+open class ErrorResponse: Codable, Error {
+    public var timestamp: Int64
+    public var status: TangyntResponseStatusCode
+    public var error: String
     
-    init(timeStamp: Int64 = Date().millisecondsSince1970, _ error: String, status: Int?) {
+    public init(timeStamp: Int64 = Date().millisecondsSince1970, _ error: String, status: Int?) {
         self.timestamp = timeStamp
         self.status = status?.toTangyntResponseStatusCode() ?? .unknownErrorOccured
         self.error = error
     }
     
-    var localizedDescription: String {
+    public var localizedDescription: String {
         return "Status: \(status.rawValue) Error message: \(error) Timestamp: \(timestamp)"
     }
 }
 
-extension Int {
-    func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
+open extension Int {
+    public func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
         if let statusCode = TangyntResponseStatusCode(rawValue: self) {
             return statusCode
         } else {
@@ -362,7 +362,7 @@ extension Int {
 
 //MARK: - Tangynt Client -
 
-enum TangyntResponseStatusCode: Int, Codable {
+open enum TangyntResponseStatusCode: Int, Codable {
     case success = 200
     case invalidIDProvided = 400
     case invalidCredentials = 401
@@ -373,7 +373,7 @@ enum TangyntResponseStatusCode: Int, Codable {
     case unknownErrorOccured = 500
 }
 
-extension TangyntResponseStatusCode {
+open extension TangyntResponseStatusCode {
     func toDescription() -> String {
         switch self {
         case .success:
@@ -396,19 +396,19 @@ extension TangyntResponseStatusCode {
     }
 }
 
-class ListOptions {
+open class ListOptions {
     
-    enum OrderDir: String {
+    public enum OrderDir: String {
         case asc, desc
     }
     
-    var fields: [String]? = nil
-    var skip: Int? = nil
-    var limit: Int? = nil
-    var orderBy: String? = nil
-    var orderDir: String? = nil
+    public var fields: [String]? = nil
+    public var skip: Int? = nil
+    public var limit: Int? = nil
+    public var orderBy: String? = nil
+    public var orderDir: String? = nil
     
-    init(fields: [String]? = nil, skip: Int? = nil, limit: Int? = nil, orderBy: String? = nil, orderDir: OrderDir? = nil) {
+    public init(fields: [String]? = nil, skip: Int? = nil, limit: Int? = nil, orderBy: String? = nil, orderDir: OrderDir? = nil) {
         self.fields = fields
         self.skip = skip
         self.limit = limit
@@ -420,7 +420,6 @@ class ListOptions {
 private class TangyntClient {
     
     let baseURL = URL(string: "https://api.tangynt.com/api/v1")!
-//    let baseURL = URL(string: "https://d675614209fd.ngrok.io/api/v1")!
     
     enum TangyntClientResponseType: String {
         case success, errorResponse, invalidStatusCode, unknown
@@ -1101,15 +1100,15 @@ private class TangyntClient {
 //MARK: - Request Data -
 
 var retryCount: Int = 0
-class TangyntRequest {
-    var request: URLRequest
-    var maxRetryCount = 3
+open class TangyntRequest {
+    public var request: URLRequest
+    public var maxRetryCount = 3
     
-    init(_ request: URLRequest) {
+    public init(_ request: URLRequest) {
         self.request = request
     }
     
-    func refreshAndRetry(completion: @escaping (Data?, HTTPURLResponse?, ErrorResponse?) -> Void) {
+    public func refreshAndRetry(completion: @escaping (Data?, HTTPURLResponse?, ErrorResponse?) -> Void) {
         if retryCount == maxRetryCount {
             Tangynt.api.logout()
             completion(nil, nil, ErrorResponse("Max retries hit", status: 0))
@@ -1124,7 +1123,7 @@ class TangyntRequest {
         }
     }
                         
-    func resultData(completion: @escaping (Data?, HTTPURLResponse?, ErrorResponse?) -> Void) {
+    public func resultData(completion: @escaping (Data?, HTTPURLResponse?, ErrorResponse?) -> Void) {
         if let expiresDate = TangyntCache.tangyntLoginResponse?.authToken.expires, expiresDate < Date().millisecondsSince1970 || (TangyntCache.tangyntLoginResponse?.authToken.expires == nil) {
             if let refreshDate = TangyntCache.tangyntLoginResponse?.refreshToken.expires, refreshDate < Date().millisecondsSince1970 || TangyntCache.tangyntLoginResponse?.refreshToken.expires == nil {
                 Tangynt.api.logout()
@@ -1160,39 +1159,39 @@ class TangyntRequest {
         }.resume()
     }
     
-    func addValue(_ value: String, forHTTPHeaderField field: String) {
+    public func addValue(_ value: String, forHTTPHeaderField field: String) {
         request.addValue(value, forHTTPHeaderField: field)
     }
 }
 
-extension URLResponse {
-    var httpURLResponse: HTTPURLResponse? {
+open extension URLResponse {
+    public var httpURLResponse: HTTPURLResponse? {
         return self as? HTTPURLResponse
     }
 }
 
-extension Error {
+open extension Error {
     fileprivate var toResponse: ErrorResponse {
         return ErrorResponse(self.localizedDescription, status: 0)
     }
 }
 
 
-extension Date {
-    var millisecondsSince1970:Int64 {
+open extension Date {
+    public var millisecondsSince1970:Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
     
     
-    init(milliseconds:Int64) {
+    public init(milliseconds:Int64) {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
     }
     
 }
 
 
-extension Data {
-    mutating func append(_ string: String) {
+open extension Data {
+    public mutating func append(_ string: String) {
         self.append(string.data(using: .utf8, allowLossyConversion: true)!)
     }
 }
@@ -1291,20 +1290,20 @@ public struct MultipartForm: Hashable, Equatable {
 
 
 //MARK: - Tangynt User -
-protocol TangyntObject: Codable {
-  var id: Int64 {get set}
-  var objectName: String {get}
+open protocol TangyntObject: Codable {
+  public var id: Int64 {get set}
+  public var objectName: String {get}
 }
 
-class TangyntUser: Codable {
-  var id: Int64
-  var emailVerified: Bool
-  var email: String
-  var password: String
-  var displayName: String
+open class TangyntUser: Codable {
+  public var id: Int64
+  public var emailVerified: Bool
+  public var email: String
+  public var password: String
+  public var displayName: String
   
   
-  enum CodingKeys: CodingKey {
+  public enum CodingKeys: CodingKey {
     case id
     case emailVerified
     case email
@@ -1336,20 +1335,20 @@ class TangyntUser: Codable {
 
 
 //MARK: - Tangynt File -
-class TangyntFile: Codable {
-  var id: Int
-  var fileType: String
-  var name: String
-  var fileSize: Int = 0
+open class TangyntFile: Codable {
+  public var id: Int
+  public var fileType: String
+  public var name: String
+  public var fileSize: Int = 0
   
-  enum CodingKeys: CodingKey {
+  public enum CodingKeys: CodingKey {
     case id
     case fileType
     case name
     case fileSize
   }
   
-  required init(from decoder: Decoder) throws {
+  required public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     id = try container.decode(Int.self, forKey: .id)
     fileType = try container.decode(String.self, forKey: .fileType)
@@ -1357,7 +1356,7 @@ class TangyntFile: Codable {
     fileSize = try container.decode(Int.self, forKey: .fileSize)
   }
   
-  init(id: Int, fileType: String, name: String) {
+  public init(id: Int, fileType: String, name: String) {
     self.id = id
     self.fileType = fileType
     self.name = name
@@ -1367,7 +1366,7 @@ class TangyntFile: Codable {
 
 
 //MARK: - Constants -
-class Constants {
+open class Constants {
   
   static let tangyntApiKey = "TangyntApiKey"
   static let currentUserKey = "CurrentUserKey"
@@ -1377,43 +1376,43 @@ class Constants {
   
 }
 
-class Endpoints {
+open class Endpoints {
   
-  static func object(_ objectName: String) -> String {
+  public static func object(_ objectName: String) -> String {
     return "\(objectName)"
   }
-  static func getObjects(_ objectName: String) -> String {
+  public static func getObjects(_ objectName: String) -> String {
     return "\(objectName)/search"
   }
-  static func objectWithId(objectName: String, id: String) -> String {
+  public static func objectWithId(objectName: String, id: String) -> String {
     return "\(objectName)/\(id)"
   }
-  static var uploadFile: String {
+  public static var uploadFile: String {
     return "files"
   }
-  static func downloadFile(fileId: Int) -> String {
+  public static func downloadFile(fileId: Int) -> String {
     return "files/\(fileId)"
   }
-  static func updateFile(fileId: Int) -> String {
+  public static func updateFile(fileId: Int) -> String {
     return "files/\(fileId)"
   }
-  static func deleteFile(fileId: Int) -> String {
+  public static func deleteFile(fileId: Int) -> String {
     return "files/\(fileId)"
   }
-  static func usersId(id: Int64) -> String {
+  public static func usersId(id: Int64) -> String {
     return "users/\(id)"
   }
-  static func updatePassword(id: Int64) -> String {
+  public static func updatePassword(id: Int64) -> String {
     return "users/\(id)/password"
   }
-  static var resetPassword: String {
+  public static var resetPassword: String {
     return "users/0/sendEmail"
   }
-  static func resendVerificationEmail(id:Int64) -> String {
+  public static func resendVerificationEmail(id:Int64) -> String {
     return "users/\(id)/sendEmail"
   }
-  static let users = "users"
-  static let usersAuth = "users/auth"
+  public static let users = "users"
+  public static let usersAuth = "users/auth"
   
 }
 
