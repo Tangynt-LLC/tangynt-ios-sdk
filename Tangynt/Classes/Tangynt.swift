@@ -1324,7 +1324,7 @@ public class TangyntUser: Codable {
     displayName = try container.decode(String.self, forKey: .displayName)
   }
   
-  init(id: Int64, emailVerified: Bool, email: String, password: String, displayName: String) {
+  public init(id: Int64, emailVerified: Bool, email: String, password: String, displayName: String) {
     self.id = id
     self.emailVerified = emailVerified
     self.email = email
