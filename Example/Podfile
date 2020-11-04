@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Tangynt_Example' do
+  pod 'Tangynt', :path => '../'
+
+  target 'Tangynt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
