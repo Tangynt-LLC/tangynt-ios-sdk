@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Tangynt'
-  s.version          = '2.0.0'
+  s.version          = '2.0.1'
   s.summary          = 'The official Swift SDK for integration with the Tangynt API.'
 
 # This description is used to generate tags and improve search results.
