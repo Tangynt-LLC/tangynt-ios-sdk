@@ -198,7 +198,7 @@ open public class Tangynt {
 
 //MARK: - Tangynt Login Response
 
-open class TangyntLoginResponse: Codable {
+public class TangyntLoginResponse: Codable {
     public var authToken: TangyntAuthToken
     public var refreshToken: TangyntRefreshToken
     
@@ -333,7 +333,7 @@ private class TangyntCache {
 }
 
 
-open class ErrorResponse: Codable, Error {
+public class ErrorResponse: Codable, Error {
     public var timestamp: Int64
     public var status: TangyntResponseStatusCode
     public var error: String
@@ -396,7 +396,7 @@ extension TangyntResponseStatusCode {
     }
 }
 
-open class ListOptions {
+public class ListOptions {
     
     public enum OrderDir: String {
         case asc, desc
@@ -1100,7 +1100,7 @@ private class TangyntClient {
 //MARK: - Request Data -
 
 var retryCount: Int = 0
-open class TangyntRequest {
+public class TangyntRequest {
     public var request: URLRequest
     public var maxRetryCount = 3
     
@@ -1295,7 +1295,7 @@ protocol TangyntObject: Codable {
   public var objectName: String {get}
 }
 
-open class TangyntUser: Codable {
+public class TangyntUser: Codable {
   public var id: Int64
   public var emailVerified: Bool
   public var email: String
@@ -1335,7 +1335,7 @@ open class TangyntUser: Codable {
 
 
 //MARK: - Tangynt File -
-open class TangyntFile: Codable {
+public class TangyntFile: Codable {
   public var id: Int
   public var fileType: String
   public var name: String
@@ -1366,7 +1366,7 @@ open class TangyntFile: Codable {
 
 
 //MARK: - Constants -
-open class Constants {
+public class Constants {
   
   static let tangyntApiKey = "TangyntApiKey"
   static let currentUserKey = "CurrentUserKey"
@@ -1376,7 +1376,7 @@ open class Constants {
   
 }
 
-open class Endpoints {
+public class Endpoints {
   
   public static func object(_ objectName: String) -> String {
     return "\(objectName)"
