@@ -349,7 +349,7 @@ open class ErrorResponse: Codable, Error {
     }
 }
 
-open extension Int {
+extension Int {
     public func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
         if let statusCode = TangyntResponseStatusCode(rawValue: self) {
             return statusCode
@@ -373,7 +373,7 @@ open enum TangyntResponseStatusCode: Int, Codable {
     case unknownErrorOccured = 500
 }
 
-open extension TangyntResponseStatusCode {
+extension TangyntResponseStatusCode {
     func toDescription() -> String {
         switch self {
         case .success:
@@ -1164,20 +1164,20 @@ open class TangyntRequest {
     }
 }
 
-open extension URLResponse {
+extension URLResponse {
     public var httpURLResponse: HTTPURLResponse? {
         return self as? HTTPURLResponse
     }
 }
 
-open extension Error {
+extension Error {
     fileprivate var toResponse: ErrorResponse {
         return ErrorResponse(self.localizedDescription, status: 0)
     }
 }
 
 
-open extension Date {
+extension Date {
     public var millisecondsSince1970:Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
@@ -1190,7 +1190,7 @@ open extension Date {
 }
 
 
-open extension Data {
+extension Data {
     public mutating func append(_ string: String) {
         self.append(string.data(using: .utf8, allowLossyConversion: true)!)
     }
