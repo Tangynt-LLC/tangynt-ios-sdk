@@ -241,13 +241,13 @@ public class TangyntLoginResponse: Codable {
     }
     
 }
-open struct TangyntAuthToken: Codable {
+public struct TangyntAuthToken: Codable {
     public var id: String
     public var issuedAt: Int64
     public var expires: Int64
 }
 
-open struct TangyntRefreshToken: Codable {
+public struct TangyntRefreshToken: Codable {
     public var id: String
     public var client: String
     public var issuedTo: Int64
@@ -349,7 +349,7 @@ public class ErrorResponse: Codable, Error {
     }
 }
 
-extension Int {
+public extension Int {
     public func toTangyntResponseStatusCode() -> TangyntResponseStatusCode {
         if let statusCode = TangyntResponseStatusCode(rawValue: self) {
             return statusCode
@@ -373,7 +373,7 @@ open enum TangyntResponseStatusCode: Int, Codable {
     case unknownErrorOccured = 500
 }
 
-extension TangyntResponseStatusCode {
+public extension TangyntResponseStatusCode {
     func toDescription() -> String {
         switch self {
         case .success:
@@ -1164,20 +1164,20 @@ public class TangyntRequest {
     }
 }
 
-extension URLResponse {
+public extension URLResponse {
     public var httpURLResponse: HTTPURLResponse? {
         return self as? HTTPURLResponse
     }
 }
 
-extension Error {
+public extension Error {
     fileprivate var toResponse: ErrorResponse {
         return ErrorResponse(self.localizedDescription, status: 0)
     }
 }
 
 
-extension Date {
+public extension Date {
     public var millisecondsSince1970:Int64 {
         return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
@@ -1190,7 +1190,7 @@ extension Date {
 }
 
 
-extension Data {
+public extension Data {
     public mutating func append(_ string: String) {
         self.append(string.data(using: .utf8, allowLossyConversion: true)!)
     }
@@ -1290,9 +1290,9 @@ public struct MultipartForm: Hashable, Equatable {
 
 
 //MARK: - Tangynt User -
-protocol TangyntObject: Codable {
-  public var id: Int64 {get set}
-  public var objectName: String {get}
+public protocol TangyntObject: Codable {
+  var id: Int64 {get set}
+  var objectName: String {get}
 }
 
 public class TangyntUser: Codable {
