@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   Tangynt helps devs more easily access the Tangynt API by using pre-built methods which does most of the work for them
                        DESC
 
-  s.homepage         = 'Tangynt.com'
+  s.homepage         = 'https://Tangynt.com'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tangynt LLC' => 'support@tangynt.com' }
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Tangynt/Classes/**/*'
   
+  s.swift_versions = "5.0"
   # s.resource_bundles = {
   #   'Tangynt' => ['Tangynt/Assets/*.png']
   # }
